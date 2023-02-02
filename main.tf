@@ -1,5 +1,7 @@
-resource "aws_ssm_parameter" "Testname" {
-  name  = "Testname"
-  type  = "String"
-  value = "barr"
+resource "aws_ssm_parameter" "Lorem" {
+  name  = "Lorem"
+  type  = "Text"
+  value = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare quam et dui eleifend, at blandit felis ultricies. Aenean ac enim nec metus maximus gravida in et nulla. Pellentesque eu ante nisl. Cras at auctor mi. Nullam blandit, lorem eu auctor pellentesque, ante felis accumsan orci, vitae rhoncus turpis enim vitae ligula. Aenean massa ex, varius id velit ac, iaculis molestie ipsum. Pellentesque quis est et felis pellentesque dignissim sed at sapien. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam a nulla et nibh laoreet blandit. Aenean at velit ac justo vestibulum feugiat. Donec nulla lectus, fermentum eu sem vitae, efficitur tempor odio. Curabitur facilisis, dolor at auctor ultrices, diam tellus sodales justo, quis posuere quam lectus sit amet diam. Nunc semper porttitor nibh ac rhoncus. Pellentesque feugiat felis eget massa rhoncus, ut ultricies sapien suscipit. Morbi sodales erat et tempor cursus.
+    Proin ornare mauris magna, non venenatis erat pharetra non. Donec in elit quis nisl convallis interdum eget non metus. Pellentesque tempor maximus odio nec condimentum. Suspendisse potenti. Aenean finibus posuere venenatis. Etiam molestie tellus ex, nec sagittis est cursus sed. Nulla egestas augue vel augue volutpat, non accumsan turpis volutpat. Etiam et leo nec augue congue varius nec vel magna. Duis blandit, diam vel hendrerit viverra, tellus purus vehicula massa, sed scelerisque mauris libero et risus. Curabitur vel dignissim elit. Suspendisse malesuada sed est sed mollis.
+    Cras sed venenatis purus, non bibendum nisl. Etiam sed sapien eros. Quisque a mattis dui. In eget blandit justo. Duis sagittis erat at nulla tincidunt aliquam. Ut congue erat in tortor aliquam, et semper lectus posuere. Nam congue eu nisi sed dignissim. Donec in magna lacinia, tempus nulla vel, fermentum quam. Nullam sed egestas ex, vel commodo sem."
 }
