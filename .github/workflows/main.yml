@@ -4,6 +4,8 @@ on:
     branches:
       # - main
       - Ryan-B1
+    paths:
+      - Ryan-B1
   pull_request:
 permissions:
       id-token: write # This is required for aws oidc connection
