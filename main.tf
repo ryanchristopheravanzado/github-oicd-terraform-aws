@@ -5,4 +5,6 @@ resource "aws_iam_user" "lb" {
   tags = {
     tag-key = "tag-value"
   }
+
+  force_destroy = false
 }
