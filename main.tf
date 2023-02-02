@@ -1,5 +1,3 @@
-resource "aws_ssm_parameter" "Foo" {
-  name  = "Foo"
-  type  = "String"
-  value = "Barr"
+resource "aws_iam_user" "lb" {
+  name = "loadbalancer"
 }
