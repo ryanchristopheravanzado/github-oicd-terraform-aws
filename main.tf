@@ -15,3 +15,7 @@ resource "aws_ssm_parameter" "Foo3" {
   type  = "String"
   value = "BarrC"
 }
+
+resource "aws_iam_user" "userdata" {
+  name = "test data"
+}
