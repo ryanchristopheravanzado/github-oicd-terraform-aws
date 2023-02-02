@@ -19,3 +19,7 @@ resource "aws_ssm_parameter" "Foo3" {
 resource "aws_iam_user" "userdata" {
   name = "testdata"
 }
+
+resource "aws_iam_user" "userdata1" {
+  name = "testdata1"
+}
