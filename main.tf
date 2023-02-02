@@ -1,9 +1,5 @@
-resource "aws_iam_user" "lb" {
-  name = "loadbalancer"
-  path = "/system/"
-  tags = {
-    tag-key = "tag-value"
-  }
-  force_destroy = false
-  
+resource "aws_ssm_parameter" "Foo" {
+  name  = "Foo"
+  type  = "String"
+  value = "Barr"
 }
