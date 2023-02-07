@@ -10,8 +10,6 @@ data "docker_image" "example" {
   name = "example_image:${local.image_tag}"
 }
 
-data "aws_ecr_login" "this" {}
-
 locals {
   image_name = "${data.docker_image.example.name}"
   image_tag = "${local.image_tag}"
