@@ -2,10 +2,7 @@ name: "Terraform action"
 on:
   push:
     branches:
-      # - main
-      - Ryan-B1
-    paths:
-      - iam_user/create_user.tf
+       - main
   pull_request:
 permissions:
       id-token: write # This is required for aws oidc connection

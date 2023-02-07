@@ -1,25 +1,37 @@
-resource "aws_ssm_parameter" "Foo" {
-  name  = "Foo"
-  type  = "String"
-  value = "Barr"
+provider "aws" {
+  region = "us-west-2"
 }
 
-resource "aws_ssm_parameter" "Foo2" {
-  name  = "Foo2"
-  type  = "String"
-  value = "BarrB"
+resource "aws_ecr_repository" "example" {
+  name = "example"
 }
 
-resource "aws_ssm_parameter" "Foo3" {
-  name  = "Foo3"
-  type  = "String"
-  value = "BarrC"
+locals {
+  image_repository = "${aws_ecr_repository.example.repository_url}"
 }
 
-resource "aws_iam_user" "userdata" {
-  name = "testdata"
+provisioner "local-exec" {
+  command = "docker build -t ${local.image_repository}:latest ."
 }
 
-resource "aws_iam_user" "userdata1" {
-  name = "testdata1"
+resource "aws_ecs_task_definition" "example" {
+  family = "example"
+  container_definitions = <<DEFINITION
+[
+  {
+    "name": "example",
+    "image": "${local.image_repository}:latest",
+    "cpu": 128,
+    "memory": 256,
+    "essential": true
+  }
+]
+DEFINITION
+}
+
+resource "aws_ecs_service" "example" {
+  name            = "example"
+  task_definition = "${aws_ecs_task_definition.example.arn}"
+  desired_count   = 1
+  cluster         = "default"
 }
