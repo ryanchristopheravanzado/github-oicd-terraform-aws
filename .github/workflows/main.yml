@@ -99,4 +99,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'iam_user/create_user' && github.event_name == 'push'
-        run: terraform -chdir=iam_user/create_user apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false
