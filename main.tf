@@ -5,7 +5,7 @@ resource "aws_ecr_repository" "x2con" {
 locals {
   image_name = "${data.docker_image.example.name}"
   image_tag = "latest"
-  repository_uri = "${aws_ecr_repository.x2con.name}"
+  repository_uri = "x2con-dev"
 }
 
 data "docker_image" "example" {
