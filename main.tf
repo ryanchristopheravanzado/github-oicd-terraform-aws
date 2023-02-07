@@ -4,6 +4,8 @@ provider "aws" {
 
 locals {
   image_tag = "latest"
+  image_name = "${data.docker_image.example.name}"
+  repository_uri = "${aws_ecr_repository.example_repository.repository_url}"
 }
 
 data "docker_image" "example" {
@@ -16,11 +18,6 @@ resource "aws_ecr_repository" "example_repository" {
 
 data "aws_ecr_login" "this" {}
 
-locals {
-  image_name = "${data.docker_image.example.name}"
-  image_tag = "${local.image_tag}"
-  repository_uri = "${aws_ecr_repository.example_repository.repository_url}"
-}
 
 resource "docker_image" "example" {
   name = "${local.image_name}"
