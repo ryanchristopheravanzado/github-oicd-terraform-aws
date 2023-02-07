@@ -1,3 +1,3 @@
-resource "aws_iam_user" "devuser" {
-  name = "devuser"
+resource "aws_ecr_repository" "x2con" {
+  name = "x2con-dev"
 }
