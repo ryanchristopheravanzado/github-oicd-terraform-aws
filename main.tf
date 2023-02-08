@@ -100,11 +100,3 @@ resource "aws_ecs_task_definition" "x2con" {
     }
   ])
 }
-
-resource "aws_ecs_service" "x2con_service" {
-  name = "x2con-dev-webapps-service"
-  cluster = aws_ecs_cluster.x2con.id
-  task_task_definition = aws_ecs_task_definition.x2con.execution_role_arn
-  desired_count = 2
-
-}
