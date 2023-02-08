@@ -10,10 +10,6 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-locals {
-  repository_uri = data.aws_ecr_repository.x2condev.repository_uri
-}
-
 resource "aws_ecs_task_definition" "x2con" {
   family = "x2con-dev-webapps"
 
@@ -21,7 +17,7 @@ resource "aws_ecs_task_definition" "x2con" {
   [
     {
       "name": "example",
-      "image": "${local.repository_uri}:latest",
+      "image": "${data.aws_ecr_repository.x2condev.repository_uri}:latest",
       "memory": 128,
       "cpu": 128
     }
