@@ -23,6 +23,35 @@ resource "aws_ecr_repository_policy" "x2con"{
   EOF
 }
 
+resource "aws_ecs_cluster" "x2con" {
+  name = "x2con-dev"
+  setting {
+    name = "containerInsights"
+    value = "enabled"
+  }
+}
+
+resource "aws_ecs_cluster_capacity_providers" "x2con" {
+  cluster_name = aws_ecs_cluster.x2con.name
+
+  capacity_providers = ["FARGATE"]
+  default_capacity_provider_strategy {
+    base = 1
+    weight = 100
+    capacity_provider = "FARGATE"
+  }
+}
+
+resource "aws_iam_role" "x2con" {
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+  });
+}
+
+resource "aws_cloudwatch_log_group" "x2con" {
+  name = "x2con-dev"
+}
+
 data "aws_ecr_repository" "x2condev" {
   name = aws_ecr_repository.x2con-dev.name
 }
