@@ -42,15 +42,6 @@ resource "aws_ecs_cluster_capacity_providers" "x2con" {
   }
 }
 
-resource "aws_iam_role" "x2con" {
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [{
-
-    }]
-  });
-}
-
 resource "aws_cloudwatch_log_group" "x2con" {
   name = "x2con-dev"
 }
