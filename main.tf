@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "x2con" {
   [
     {
       "name": "example",
-      "image": "${data.aws_ecr_repository.x2condev.repository_uri}:latest",
+      "image": "sampleimage:latest",
       "memory": 128,
       "cpu": 128
     }
