@@ -5,7 +5,6 @@ resource "aws_ecr_repository" "x2con-dev" {
 data "aws_ecr_repository" "x2condev" {
   name = aws_ecr_repository.x2con-dev.name
 }
-
 provider "aws" {
   region = "ap-southeast-1"
 }
