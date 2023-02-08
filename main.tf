@@ -1,5 +1,26 @@
 resource "aws_ecr_repository" "x2con-dev" {
   name = "x2con-dev"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+resource "aws_ecr_repository_policy" "x2con"{
+  repository = aws_ecr_repository.x2con-dev.name
+  policy = <<EOF
+  {
+    "Version": "2008-10-17",
+    "Statement": [
+      {
+        "Sid": "adds full ecr access to demo repository",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "*"
+      }
+    ]
+  }
+  EOF
 }
 
 data "aws_ecr_repository" "x2condev" {
