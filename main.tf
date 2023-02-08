@@ -2,7 +2,7 @@ resource "aws_ecr_repository" "x2con-dev" {
   name = "x2con-dev"
 }
 
-data "aws_ecr_repository" "x2con-dev" {
+data "aws_ecr_repository" "x2condev" {
   name = aws_ecr_repository.x2con-dev.name
 }
 
@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 locals {
-  repository_uri = data.aws_ecr_repository.x2con-dev.repository_uri
+  repository_uri = data.aws_ecr_repository.x2condev.repository_uri
 }
 
 resource "aws_ecs_task_definition" "x2con" {
