@@ -45,6 +45,9 @@ resource "aws_ecs_cluster_capacity_providers" "x2con" {
 resource "aws_iam_role" "x2con" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
+    Statement = [{
+
+    }]
   });
 }
 
@@ -52,24 +55,65 @@ resource "aws_cloudwatch_log_group" "x2con" {
   name = "x2con-dev"
 }
 
-data "aws_ecr_repository" "x2condev" {
-  name = aws_ecr_repository.x2con-dev.name
+resource "aws_iam_role" "x2con" {
+  assume_role_policy = jsonencode ({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Sid = ""
+      Principal = {
+        Service = [
+          "ecs.amazonaws.com",
+          "ecs-tasks.amazonaws.com"
+        ]
+      }
+    }]
+  })
 }
-provider "aws" {
-  region = "ap-southeast-1"
+
+resource "aws_iam_role_policy" "x2con"{
+  role = aws_iam_role.x2con.id
+  policy = <<EOF
+  {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Action": "*",
+        "Resource": "*"    
+      }
+    ]
+  }
+  EOF
 }
 
 resource "aws_ecs_task_definition" "x2con" {
   family = "x2con-dev-webapps"
+  execution_role_arn = aws_iam_role.x2con.arn
+  requires_compatibilities = ["FARGATE"]
+  network_mode  = "awsvpc"
+  cpu = "256"
+  memory = "512"
 
-  container_definitions = <<DEFINITION
-  [
+  container_definitions = jsonencode([
     {
-      "name": "example",
-      "image": "sampleimage:latest",
-      "memory": 128,
-      "cpu": 128
+      name = "x2con-task"
+      image = "sampleimage:latest"
+      essential = true
+      portMappings = [{
+        containerPort = 80
+        hostPort = 80
+
+      }]
     }
-  ]
-DEFINITION
+  ])
+}
+
+resource "aws_ecs_service" "x2con_service" {
+  name = "x2con-dev-webapps-service"
+  cluster = aws_ecs_cluster.x2con.id
+  task_task_definition = aws_ecs_task_definition.x2con.execution_role_arn
+  desired_count = 2
+
 }
