@@ -10,10 +10,6 @@ provider "aws" {
   region = "ap-southeast-1"
 }
 
-provider "docker" {
-
-}
-
 locals {
   repository_uri = data.aws_ecr_repository.x2con-dev.repository_uri
 }
