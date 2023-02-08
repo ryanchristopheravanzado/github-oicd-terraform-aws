@@ -20,10 +20,6 @@ locals {
 
 resource "null_resource" "example_image" {
   provisioner "local-exec" {
-    command = <<EOT
-      docker build -t ${local.repository_uri}:latest .
-      $(aws ecr get-login --no-include-email --region us-west-2)
-      docker push ${local.repository_uri}:latest
-    EOT
+    command = "docker build -t myimage:latest ."
   }
 }
