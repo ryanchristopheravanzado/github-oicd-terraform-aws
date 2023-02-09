@@ -6,11 +6,10 @@ jobs:
   deploy:
     name: First Job
     runs-on: ubuntu-latest
-    steps:
-      - name: Open Bash
+    defaults:
         run: 
           shell: bash
-
+    steps:
       - name: Terraform
         uses: hashicorp/setup-terraform@v2
         with:
