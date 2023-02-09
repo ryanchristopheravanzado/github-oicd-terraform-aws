@@ -20,6 +20,11 @@ jobs:
         run: terraform init
         exit: 0
 
+jobs:
+  deploy:
+    name: First Job
+    runs-on: ubuntu-latest
+    steps:
       - name: Open Bash
         run:
           shell: bash
