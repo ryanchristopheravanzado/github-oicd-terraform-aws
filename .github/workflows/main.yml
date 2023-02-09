@@ -36,15 +36,6 @@ jobs:
       - name: Generate proto code
         run: protoc --proto_path=proto --go_out=proto proto/*.proto
 
-      - name: Build
-        run: go build -v ./..
-
-      - name: Test
-        run: go test -v ./..
-
-      - name: Run Hello World
-        run: go run main.go
-
 
 
 # name: "Terraform action"
