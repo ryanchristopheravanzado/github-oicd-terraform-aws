@@ -7,19 +7,37 @@ jobs:
     deploy:
       name: First Job
       runs-on: ubuntu-latest
-      environment: developments
+      
       steps:
-      - name: Hello World Job 1
-        run: echo "Hello, World! Job 1"
+      - name: Open Bash
+        run: 
+          shell: bash
 
-      name: Second Job
-      runs-on: ubuntu-latest
-      defaults:
+      - name: Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.5
+
+      - name: Terraform init
+        run: terraform init
+        exit: 0
+
+      - name: Open Bash
         run:
           shell: bash
-      steps:
-        - name: Hello World Job 2
-          run:  echo "Hello, World! Job 2"
+      
+      - name: Echo Hello World
+        run: echo "Hello World" 
+        exit: 0
+        
+      # name: Second Job
+      # runs-on: ubuntu-latest
+      # defaults:
+      #   run:
+      #     shell: bash
+      # steps:
+      #   - name: Hello World Job 2
+      #     run:  echo "Hello, World! Job 2"
       
 
 
