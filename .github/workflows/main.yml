@@ -3,32 +3,32 @@ name: Hello World
 on: [push]
 
 jobs:
-  build:
-    deploy:
-      steps:
-          name: First Job
-          runs-on: ubuntu-latest
+  deploy:
+    steps:
+        name: First Job
+        runs-on: ubuntu-latest
 
-        - name: Open Bash
-          run: 
-            shell: bash
+      - name: Open Bash
+        run: 
+          shell: bash
 
-        - name: Terraform
-          uses: hashicorp/setup-terraform@v2
-          with:
-            terraform_version: 1.2.5
+      - name: Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.2.5
 
-        - name: Terraform init
-          run: terraform init
-          exit: 0
+      - name: Terraform init
+        run: terraform init
+        exit: 0
 
-        - name: Open Bash
-          run:
-            shell: bash
-        
-        - name: Echo Hello World
-          run: echo "Hello World" 
-          exit: 0
+      - name: Open Bash
+        run:
+          shell: bash
+      
+      - name: Echo Hello World
+        run: echo "Hello World" 
+        exit: 0
+    
 
       # name: Second Job
       # runs-on: ubuntu-latest
