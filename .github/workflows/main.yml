@@ -7,8 +7,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Hello World
-      run: echo "Hello, World!"
+    - name: Hello World Job 1
+      run: echo "Hello, World! Job 1"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World Job 2
+      run: echo "Hello, World! Job 2"
 
 
 
