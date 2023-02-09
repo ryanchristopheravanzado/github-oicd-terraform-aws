@@ -18,19 +18,14 @@ jobs:
 
       - name: Terraform init
         run: terraform init
-        exit: 0
-
-        
-    steps:
+      
       - name: Open Bash
         run:
           shell: bash
       
       - name: Echo Hello World
-        run: echo "Hello World" 
-        exit: 0
-    
-
+        run: echo "Hello World"
+        
       # name: Second Job
       # runs-on: ubuntu-latest
       # defaults:
