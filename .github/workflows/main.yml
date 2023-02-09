@@ -22,10 +22,11 @@ jobs:
       - name: Open Bash
         run:
           shell: bash
+          working-directory: .
       
       - name: Echo Hello World
         run: echo "Hello World"
-        
+
       # name: Second Job
       # runs-on: ubuntu-latest
       # defaults:
