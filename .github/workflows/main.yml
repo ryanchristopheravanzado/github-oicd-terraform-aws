@@ -5,31 +5,31 @@ on: [push]
 jobs:
   build:
     deploy:
-      name: First Job
-      runs-on: ubuntu-latest
-      
       steps:
-      - name: Open Bash
-        run: 
-          shell: bash
+          name: First Job
+          runs-on: ubuntu-latest
 
-      - name: Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.2.5
+        - name: Open Bash
+          run: 
+            shell: bash
 
-      - name: Terraform init
-        run: terraform init
-        exit: 0
+        - name: Terraform
+          uses: hashicorp/setup-terraform@v2
+          with:
+            terraform_version: 1.2.5
 
-      - name: Open Bash
-        run:
-          shell: bash
-      
-      - name: Echo Hello World
-        run: echo "Hello World" 
-        exit: 0
+        - name: Terraform init
+          run: terraform init
+          exit: 0
+
+        - name: Open Bash
+          run:
+            shell: bash
         
+        - name: Echo Hello World
+          run: echo "Hello World" 
+          exit: 0
+
       # name: Second Job
       # runs-on: ubuntu-latest
       # defaults:
