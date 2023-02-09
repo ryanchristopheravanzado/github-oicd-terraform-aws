@@ -18,11 +18,6 @@ jobs:
       - name: Terraform init
         run: terraform init
       
-      - name: Open Bash
-        run:
-          shell: bash
-          working-directory: .
-      
       - name: Echo Hello World
         run: echo "Hello World"
 
