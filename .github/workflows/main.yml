@@ -1,41 +1,46 @@
-name: Hello World
+name: Build and tests
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
-  deploy:
-    name: First Job
+  build:
     runs-on: ubuntu-latest
-    defaults:
-        run: 
-          shell: bash
     steps:
-      - name: Terraform
-        uses: hashicorp/setup-terraform@v2
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
         with:
-          terraform_version: 1.2.5
+          go-version: 1.19
+        
+      - name: Install protoc
+      - run: | 
+          sudo  apt-get update
+          #sudo apt install -y protobuf-compiler
+          sudo apt install -y curl
 
-      - name: Terraform init
-        run: terraform init
-      
-      - name: Echo Hello World
-        run: echo "Hello World"
+          PB_REL="https://github.com/protocolbuffers/protobuf/releases"
+          curl -LO $PB_REL/downloads/v3.15.8/protoc-3.15.8-linux-86_64.zip
+          unzip protoc-3.15.8-linux-x86_64.zip -d $HOME/.local
+          export PATH="$PATH:HOME/.local/bin"
 
-      # name: Second Job
-      # runs-on: ubuntu-latest
-      # defaults:
-      #   run:
-      #     shell: bash
-      # steps:
-      #   - name: Hello World Job 2
-      #     run:  echo "Hello, World! Job 2"
-      
+          protoc --version
 
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
 
-      
+      - name: Generate proto code
+        run: protoc --proto_path=proto --go_out=proto proto/*.proto
 
-  
+      - name: Build
+        run: go build -v ./..
 
+      - name: Test
+        run: go test -v ./..
 
 
 
