@@ -1,20 +1,14 @@
-name: Sample Action
-on:
-  push:
-    branches:
-      - main
-    
+name: Hello World
+
+on: [push]
+
 jobs:
-  deploy:
-    runs-on:  ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: .
-      
-      steps:
-        - name: hello world
-          run: echo "hello world"
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Hello World
+      run: echo "Hello, World!"
 
 
 
